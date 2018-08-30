@@ -1,0 +1,40 @@
+server:
+  port: 8080
+  context-path: /travel
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://39.104.174.227:3306/travel
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.jdbc.Driver
+    initialSize: 5
+    minIdle: 1
+    maxActive: 20
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: select 'x'
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxPoolPreparedStatementPerConnectionSize: 20
+    stat:
+      mergeSql: true
+      slowSqlMillis: 3000
+      logSlowSql: true
+    removeAbandoned: false
+    removeAbandonedTimeout: 180
+    logAbandoned: true
+
+mybatis:
+  mapper-locations: classpath:mybatis/*.xml
+  type-aliases-package: com.phoenix.travel
+
+#pagehelper分页插件
+#pagehelper:
+#    helperDialect: mysql
+#    reasonable: true
+#    supportMethodsArguments: true
+#    params: count=countSql
