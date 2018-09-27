@@ -28,6 +28,9 @@ spring:
     removeAbandonedTimeout: 180
     logAbandoned: true
 
+  session:
+    store-type: none
+
 mybatis:
   mapper-locations: classpath:mybatis/*.xml
   type-aliases-package: com.phoenix.travel

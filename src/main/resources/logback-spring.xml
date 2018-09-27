@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <property name="APP_NAME" value="travel-cust"/>
+    <property name="LOG_ROOT_DIR" value="/data/logs/${APP_NAME}"/>
+    <property name="ENCODER_PATTERN" value="%d{[yyyy-MM-dd HH:mm:ss]}[%level][%logger{1}:%L] %msg%n"/>
+    <property name="ENCODING" value="UTF-8"/>
+    <property name="MAX_HISTORY" value="15"/>
+    <property name="MAX_FILE_SIZE" value="50MB"/>
+    <!--<property name="EMAIL_ENABLE" value="@mail.enable@"></property>-->
+    <property name="CONSOLE_FILTER" value="INFO"/>
+
+
+    <!--&lt;!&ndash; 邮件发送相关 &ndash;&gt;-->
+    <!--<property name="smtpHost" value="smtp.exmail.qq.com"/>-->
+    <!--&lt;!&ndash;<property name="smtpPort" value="25"/>&ndash;&gt;-->
+    <!--<property name="username" value="noreply.synapse@ideabinder.com"/>-->
+    <!--<property name="password" value="Pass1q2w3e4r"/>-->
+    <!--<property name="SSL" value="false"/>-->
+    <!--<property name="email_to" value="synapse_be@ideabinder.com"/>-->
+    <!--<property name="email_from" value="noreply.synapse@ideabinder.com"/>-->
+    <!--<property name="email_subject" value="【%level：${APP_NAME}】"/>-->
+
+    <contextName>${APP_NAME}</contextName>
+    <jmxConfigurator/>
+
+    <contextListener class="ch.qos.logback.classic.jul.LevelChangePropagator">
+        <resetJUL>true</resetJUL>
+    </contextListener>
+
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder charset="${ENCODING}">
+            <pattern>${ENCODER_PATTERN}</pattern>
+            <charset>${ENCODING}</charset>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>${CONSOLE_FILTER}</level>
+        </filter>
+    </appender>
+
+    <appender name="DEBUG_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_ROOT_DIR}/debug.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_ROOT_DIR}/debug_%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+            <maxHistory>${MAX_HISTORY}</maxHistory>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>${MAX_FILE_SIZE}</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${ENCODER_PATTERN}</pattern>
+            <charset>${ENCODING}</charset>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>DEBUG</level>
+        </filter>
+    </appender>
+    <appender name="INFO_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_ROOT_DIR}/info.log</file>
+        <!--<encoding>${ENCODING}</encoding>-->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_ROOT_DIR}/info_%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+            <maxHistory>${MAX_HISTORY}</maxHistory>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>${MAX_FILE_SIZE}</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${ENCODER_PATTERN}</pattern>
+            <charset>${ENCODING}</charset>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter>
+    </appender>
+    <appender name="WARNING_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_ROOT_DIR}/warning.log</file>
+        <!--<encoding>${ENCODING}</encoding>-->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_ROOT_DIR}/warning_%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+            <maxHistory>${MAX_HISTORY}</maxHistory>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>${MAX_FILE_SIZE}</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${ENCODER_PATTERN}</pattern>
+            <charset>${ENCODING}</charset>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>WARN</level>
+        </filter>
+    </appender>
+    <appender name="ERROR_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_ROOT_DIR}/error.log</file>
+        <!--<encoding>${ENCODING}</encoding>-->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_ROOT_DIR}/error_%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+            <maxHistory>${MAX_HISTORY}</maxHistory>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>${MAX_FILE_SIZE}</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${ENCODER_PATTERN}</pattern>
+            <charset>${ENCODING}</charset>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ERROR</level>
+        </filter>
+    </appender>
+
+    <appender name="CONTROLLER_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_ROOT_DIR}/controller.log</file>
+        <!--<encoding>${ENCODING}</encoding>-->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_ROOT_DIR}/controller_%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+            <maxHistory>${MAX_HISTORY}</maxHistory>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>${MAX_FILE_SIZE}</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${ENCODER_PATTERN}</pattern>
+            <charset>${ENCODING}</charset>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter>
+    </appender>
+
+
+    <!-- 邮件发送相关 -->
+    <!-- 邮件发送相关 -->
+
+    <!--<appender name="EMAIL" class="com.idb.synapse.config.MySMTPAppender">-->
+        <!--<smtpHost>${smtpHost}</smtpHost>-->
+        <!--&lt;!&ndash; <smtpPort>${smtpPort}</smtpPort>&ndash;&gt;-->
+        <!--<username>${username}</username>-->
+        <!--<password>${password}</password>-->
+        <!--<SSL>${SSL}</SSL>-->
+        <!--<asynchronousSending>true</asynchronousSending>-->
+        <!--<from>${email_from}</from>-->
+        <!--<subject>${email_subject}</subject>-->
+        <!--<to>${email_to}</to>-->
+        <!--<layout class="com.idb.synapse.config.MailLayout"/>-->
+        <!--<enable>${EMAIL_ENABLE}</enable>-->
+    <!--</appender>-->
+
+
+    <root level="INFO">
+        <appender-ref ref="ERROR_FILE"/>
+        <appender-ref ref="DEBUG_FILE"/>
+        <appender-ref ref="INFO_FILE"/>
+        <appender-ref ref="console"/>
+        <!--<appender-ref ref="EMAIL"/>-->
+    </root>
+
+    <logger name="controllerLog" level="INFO" additivity="false">
+        <appender-ref ref="CONTROLLER_FILE"/>
+        <appender-ref ref="console"/>
+    </logger>
+
+    <logger name="com.phoenix.travel" level="INFO" additivity="false">
+        <appender-ref ref="DEBUG_FILE"/>
+        <appender-ref ref="INFO_FILE"/>
+        <appender-ref ref="WARNING_FILE"/>
+        <appender-ref ref="ERROR_FILE"/>
+        <appender-ref ref="console"/>
+        <!--<appender-ref ref="EMAIL"/>-->
+    </logger>
+    <logger name="org.springframework" level="INFO" additivity="false">
+        <appender-ref ref="DEBUG_FILE"/>
+        <appender-ref ref="INFO_FILE"/>
+        <appender-ref ref="ERROR_FILE"/>
+        <appender-ref ref="console"/>
+    </logger>
+    <!--<logger name="org.springframework.data.redis" level="ERROR" additivity="false">-->
+        <!--<appender-ref ref="DEBUG_FILE"/>-->
+        <!--<appender-ref ref="INFO_FILE"/>-->
+        <!--<appender-ref ref="ERROR_FILE"/>-->
+        <!--<appender-ref ref="console"/>-->
+        <!--<appender-ref ref="EMAIL"/>-->
+    <!--</logger>-->
+    <logger name="com.alibaba.druid" level="ERROR" additivity="false">
+        <appender-ref ref="ERROR_FILE"/>
+        <appender-ref ref="console"/>
+    </logger>
+    <!--<logger name="org.apache.zookeeper" level="WARN" additivity="false">-->
+        <!--<appender-ref ref="ERROR_FILE"/>-->
+        <!--<appender-ref ref="INFO_FILE"/>-->
+        <!--<appender-ref ref="WARNING_FILE"/>-->
+        <!--<appender-ref ref="console"/>-->
+        <!--<appender-ref ref="EMAIL"/>-->
+    <!--</logger>-->
+
+
+    <!-- <include resource="org/springframework/boot/logging/logback/base.xml"/>
+     <jmxConfigurator/>-->
+
+</configuration>
