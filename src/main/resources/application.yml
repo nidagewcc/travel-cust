@@ -33,7 +33,7 @@ spring:
 
 mybatis:
   mapper-locations: classpath:mybatis/*.xml
-  type-aliases-package: com.phoenix.travel
+  #type-aliases-package: com.phoenix.travel
 
 #pagehelper分页插件
 #pagehelper:

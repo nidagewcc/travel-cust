@@ -15,7 +15,7 @@ public class TravelResult implements Serializable {
 
     private TravelResult(Object data) {
         this.code = RspCodeEnum.SUCCESS.getCode();
-        this.code = RspCodeEnum.SUCCESS.getMsg();
+        this.msg = RspCodeEnum.SUCCESS.getMsg();
         this.data = data;
     }
 
@@ -37,6 +37,11 @@ public class TravelResult implements Serializable {
 
     public static TravelResult ok(Object data) {
         return new TravelResult(data);
+    }
+
+    public static TravelResult err(String code) {
+        RspCodeEnum rspCodeEnum = RspCodeEnum.getEnum(code);
+        return new TravelResult(rspCodeEnum.getCode(), rspCodeEnum.getMsg(), false);
     }
 
     private String code;

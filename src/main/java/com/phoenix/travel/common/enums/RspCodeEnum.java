@@ -11,7 +11,10 @@ public enum RspCodeEnum {
 
     SUCCESS("10000", "成功"),
     FAIL("99999", "失败"),
-    UNKNOWN_ERR("-1", "未知错误");
+    UNKNOWN_ERR("-1", "未知错误"),
+
+    ADMIN_NOT_EXIST("10001", "管理员不存在"),
+    INCORRECT_PWD("10002", "密码错误");
 
     RspCodeEnum(String code, String msg) {
         this.code = code;
@@ -27,5 +30,16 @@ public enum RspCodeEnum {
 
     public String getMsg() {
         return msg;
+    }
+
+
+    public static RspCodeEnum getEnum(String code) {
+        RspCodeEnum[] values = RspCodeEnum.values();
+        for (RspCodeEnum val : values) {
+            if (val.code.equals(code)) {
+                return val;
+            }
+        }
+        return null;
     }
 }

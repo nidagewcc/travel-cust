@@ -1,6 +1,8 @@
 package com.phoenix.travel.controller;
 
 import com.phoenix.travel.common.model.TravelResult;
+import com.phoenix.travel.service.AdminUserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +18,8 @@ import java.util.Map;
 @RequestMapping("/admin")
 public class AdminUserController {
 
+    @Autowired
+    private AdminUserService adminUserService;
 
     /**
      * 后台登录
@@ -25,7 +29,9 @@ public class AdminUserController {
      */
     @PostMapping("/login")
     public TravelResult login(@RequestBody Map<String, String> loginParam) {
-        //TODO
-        return TravelResult.ok();
+        String userName = loginParam.get("userName");
+        String password = loginParam.get("password");
+
+        return adminUserService.login(userName, password);
     }
 }
