@@ -1,4 +1,4 @@
-package com.phoenix.travel.common.component.aop;
+package com.phoenix.travel.common.component;
 
 import com.alibaba.fastjson.JSON;
 import org.aspectj.lang.JoinPoint;
