@@ -14,7 +14,10 @@ public enum RspCodeEnum {
     UNKNOWN_ERR("-1", "未知错误"),
 
     ADMIN_NOT_EXIST("10001", "管理员不存在"),
-    INCORRECT_PWD("10002", "密码错误");
+    INCORRECT_PWD("10002", "密码错误"),
+
+    ORDER_NOT_EXIST("10003", "订单不存在");
+
 
     RspCodeEnum(String code, String msg) {
         this.code = code;
