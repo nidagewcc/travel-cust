@@ -1,6 +1,5 @@
 package com.phoenix.travel.service.impl;
 
-import com.phoenix.travel.common.component.SessionComponent;
 import com.phoenix.travel.common.consts.GlobalConstants;
 import com.phoenix.travel.common.enums.RspCodeEnum;
 import com.phoenix.travel.common.enums.StatusEnum;
@@ -31,9 +30,6 @@ public class AdminUserServiceImpl implements AdminUserService {
     @Autowired
     private AdminUserMapper adminUserMapper;
 
-    @Autowired
-    private SessionComponent session;
-
     @Override
     public TravelResult login(String userName, String password) {
 
@@ -54,10 +50,7 @@ public class AdminUserServiceImpl implements AdminUserService {
             throw new TravelBizRuntimeException(RspCodeEnum.INCORRECT_PWD.getCode());
         }
 
-        // 保存session
-        session.setLoginUser(adminUser);
-
-        return TravelResult.ok();
+        return TravelResult.ok(adminUser);
     }
 
 

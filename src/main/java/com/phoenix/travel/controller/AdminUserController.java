@@ -1,6 +1,8 @@
 package com.phoenix.travel.controller;
 
+import com.phoenix.travel.common.component.SessionComponent;
 import com.phoenix.travel.common.model.TravelResult;
+import com.phoenix.travel.po.AdminUser;
 import com.phoenix.travel.service.AdminUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,6 +23,9 @@ public class AdminUserController {
     @Autowired
     private AdminUserService adminUserService;
 
+    @Autowired
+    private SessionComponent session;
+
     /**
      * 后台登录
      *
@@ -32,6 +37,22 @@ public class AdminUserController {
         String userName = loginParam.get("userName");
         String password = loginParam.get("password");
 
-        return adminUserService.login(userName, password);
+        TravelResult result = adminUserService.login(userName, password);
+
+        // 保存session
+        session.setLoginUser((AdminUser) result.getData());
+
+        return TravelResult.ok();
+    }
+
+    /**
+     * 登出
+     *
+     * @return
+     */
+    @PostMapping("/logout")
+    public TravelResult logout() {
+        session.removeLoginUser();
+        return TravelResult.ok();
     }
 }

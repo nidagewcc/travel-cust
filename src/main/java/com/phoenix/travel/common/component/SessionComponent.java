@@ -38,4 +38,11 @@ public class SessionComponent {
         return loginUser == null ? null : JSON.parseObject((String) loginUser, AdminUser.class);
     }
 
+    /**
+     * 清除登录信息
+     */
+    public void removeLoginUser() {
+        session.removeAttribute(GlobalConstants.LOGIN_USER);
+    }
+
 }
