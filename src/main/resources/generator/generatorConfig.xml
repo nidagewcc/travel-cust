@@ -40,8 +40,8 @@
 
         <!-- 要生成的表 tableName是数据库中的表名或视图名 domainObjectName是实体类名-->
         <!--<table tableName="admin_user"></table>-->
-        <!--<table tableName="scenic_item"></table>-->
+        <table tableName="scenic"></table>
         <!--<table tableName="trip"></table>-->
-        <table tableName="order"></table>
+        <!--<table tableName="order"></table>-->
     </context>
 </generatorConfiguration>
