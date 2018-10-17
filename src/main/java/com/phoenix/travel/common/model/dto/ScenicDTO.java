@@ -8,6 +8,9 @@ package com.phoenix.travel.common.model.dto;
  */
 public class ScenicDTO {
 
+
+    private Integer scenicId;
+
     private String scenicName;
     private Integer cityId;
     private String scenicAddress;
@@ -16,6 +19,14 @@ public class ScenicDTO {
     private String bannerImgs;
 
     private String scenicDesc;
+
+    public Integer getScenicId() {
+        return scenicId;
+    }
+
+    public void setScenicId(Integer scenicId) {
+        this.scenicId = scenicId;
+    }
 
     public String getScenicName() {
         return scenicName;
@@ -76,7 +87,8 @@ public class ScenicDTO {
     @Override
     public String toString() {
         return "ScenicDTO{" +
-                "scenicName='" + scenicName + '\'' +
+                "scenicId=" + scenicId +
+                ", scenicName='" + scenicName + '\'' +
                 ", cityId=" + cityId +
                 ", scenicAddress='" + scenicAddress + '\'' +
                 ", openTime='" + openTime + '\'' +

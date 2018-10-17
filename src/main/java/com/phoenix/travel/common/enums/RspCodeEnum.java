@@ -16,7 +16,10 @@ public enum RspCodeEnum {
     ADMIN_NOT_EXIST("10001", "管理员不存在"),
     INCORRECT_PWD("10002", "密码错误"),
 
-    ORDER_NOT_EXIST("10003", "订单不存在");
+    ORDER_NOT_EXIST("10003", "订单不存在"),
+
+    SCENIC_NOT_EXIST("10004", "景点不存在"),
+    SCENIC_UPDATE_FAIL("10005", "景点更新失败");
 
 
     RspCodeEnum(String code, String msg) {

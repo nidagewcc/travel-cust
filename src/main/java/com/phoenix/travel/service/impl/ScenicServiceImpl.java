@@ -1,7 +1,9 @@
 package com.phoenix.travel.service.impl;
 
 import com.phoenix.travel.common.enums.DeleteFlagEnum;
+import com.phoenix.travel.common.enums.RspCodeEnum;
 import com.phoenix.travel.common.enums.StatusEnum;
+import com.phoenix.travel.common.exception.TravelBizRuntimeException;
 import com.phoenix.travel.common.model.TravelResult;
 import com.phoenix.travel.common.model.dto.ScenicDTO;
 import com.phoenix.travel.common.util.DateUtils;
@@ -10,6 +12,7 @@ import com.phoenix.travel.po.Scenic;
 import com.phoenix.travel.service.ScenicService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -53,16 +56,30 @@ public class ScenicServiceImpl implements ScenicService {
 
     @Override
     public TravelResult info(Integer scenicId) {
-        return null;
+        Scenic scenic = scenicMapper.selectByPrimaryKey(scenicId);
+        if (scenic == null) {
+            logger.error("景点[{}]不存在", scenicId);
+            throw new TravelBizRuntimeException(RspCodeEnum.SCENIC_NOT_EXIST.getCode());
+        }
+
+        return TravelResult.ok(scenic);
     }
 
     @Override
     public TravelResult update(ScenicDTO scenic) {
-        return null;
+        Scenic updateScenic = new Scenic();
+        BeanUtils.copyProperties(scenic, updateScenic);
+        int i = scenicMapper.updateByPrimaryKey(updateScenic);
+        if (i == 0) {
+            throw new TravelBizRuntimeException(RspCodeEnum.SCENIC_UPDATE_FAIL.getCode());
+        }
+
+        return TravelResult.ok();
     }
 
     @Override
-    public TravelResult updateSts(Integer scenicSts, List<Integer> scenicId) {
-        return null;
+    public TravelResult updateSts(Integer sts, List<Integer> ids) {
+        scenicMapper.batchUpdateStatus(ids, sts);
+        return TravelResult.ok();
     }
 }
