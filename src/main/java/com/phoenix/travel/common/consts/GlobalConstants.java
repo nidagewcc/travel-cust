@@ -14,4 +14,7 @@ public class GlobalConstants {
      * session key
      */
     public static final String LOGIN_USER = "loginUser";
+
+
+    public static final String IMAGE_BASE_PATH = "/root/images";
 }

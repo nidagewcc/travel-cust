@@ -31,6 +31,11 @@ spring:
   session:
     store-type: none
 
+  http:
+    multipart:
+      maxFileSize: 10Mb
+      maxRequestSize: 100Mb
+
 mybatis:
   mapper-locations: classpath:mybatis/*.xml
   #type-aliases-package: com.phoenix.travel

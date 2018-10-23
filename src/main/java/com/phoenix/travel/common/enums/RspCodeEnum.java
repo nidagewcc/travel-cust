@@ -19,7 +19,10 @@ public enum RspCodeEnum {
     ORDER_NOT_EXIST("10003", "订单不存在"),
 
     SCENIC_NOT_EXIST("10004", "景点不存在"),
-    SCENIC_UPDATE_FAIL("10005", "景点更新失败");
+    SCENIC_UPDATE_FAIL("10005", "景点更新失败"),
+
+    IMG_NOT_EMPTY("10006", "图片不能为空"),
+    IMG_FORMAT_INVALID("10007", "图片格式不支持");
 
 
     RspCodeEnum(String code, String msg) {
