@@ -7,6 +7,8 @@ package com.phoenix.travel.common.exception;
  * @create 2018/10/10
  */
 public class TravelBizRuntimeException extends RuntimeException {
+    private static final long serialVersionUID = -6763486995463561690L;
+
     public TravelBizRuntimeException() {
         super();
     }
