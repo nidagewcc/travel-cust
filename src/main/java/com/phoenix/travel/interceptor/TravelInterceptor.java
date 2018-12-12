@@ -15,6 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 public class TravelInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
+
+        // 拦截器稍后实现
         return false;
     }
 

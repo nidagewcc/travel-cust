@@ -38,11 +38,12 @@ public class AdminUserController {
         String password = loginParam.get("password");
 
         TravelResult result = adminUserService.login(userName, password);
+        AdminUser adminUser = (AdminUser) result.getData();
 
         // 保存session
-        session.setLoginUser((AdminUser) result.getData());
+        session.setLoginUser(adminUser);
 
-        return TravelResult.ok();
+        return TravelResult.ok(adminUser.getUserName());
     }
 
     /**
